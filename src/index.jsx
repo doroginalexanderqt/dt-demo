@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import file from 'file';
+// import { Provider } from 'react-redux';
+// import store from './store';
+// import Skeleton from './components/Skeleton';
 
 ReactDOM.render(
-  <div>
-    {' '}
-      divs
-    {file()}
-    {' '}
-  </div>,
-  document.getElementById('root'),
+    <div> asd </div>,
+    document.getElementById('root')
 );

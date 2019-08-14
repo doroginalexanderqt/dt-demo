@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "webpack-dev-server --config config/webpack.dev.conf.js",
-    "build": "webpack --config config/webpack.build.conf.js"
+    "build": "webpack --config config/webpack.build.conf.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"run linter\""
   },
   "dependencies": {
     "axios": "0.19.0",
@@ -11,13 +13,23 @@
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-router-dom": "5.0.1",
-    "styled-components": "4.3.2"
+    "styled-components": "4.3.2",
+    "react-redux": "6.0.0",
+    "react-router": "3.2.1",
+    "react-router-redux": "4.0.8",
+    "redux": "4.0.4",
+    "redux-actions": "2.6.5",
+    "redux-observable": "1.1.0",
+    "rxjs": "6.5.2"
   },
   "devDependencies": {
-    "babel-core": "6.26.3",
-    "babel-loader": "7.1.5",
-    "babel-preset-env": "1.7.0",
-    "babel-preset-react": "6.24.1",
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.3",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "17.1.1",
     "eslint-import-resolver-alias": "1.1.2",

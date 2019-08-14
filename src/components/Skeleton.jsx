@@ -10,7 +10,7 @@ const mapDispatchToProps = dispatch => ({
 
 class Skeleton extends PureComponent {
     render() {
-        return <div> Container </div>
+        return <div> Container </div>;
     }
 }
 

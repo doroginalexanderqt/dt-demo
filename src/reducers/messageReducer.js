@@ -6,7 +6,7 @@ const messageReducer = (state = null, action) => {
         return {
             ...state,
             ...action.payload
-        }
+        };
     }
     default:
         return state;

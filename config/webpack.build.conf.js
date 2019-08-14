@@ -4,9 +4,9 @@ const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.base.conf');
 
 const buildWebpackConfig = merge(baseWebpackConfig, {
-  mode: 'production',
+    mode: 'production',
 });
 
 module.exports = new Promise((resolve) => {
-  resolve(buildWebpackConfig);
+    resolve(buildWebpackConfig);
 });

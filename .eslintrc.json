@@ -6,9 +6,7 @@
     },
     "extends": [
         "airbnb",
-        "eslint:recommended",
-        "plugin:import/errors",
-        "plugin:import/warnings"
+        "eslint:recommended"
     ],
     "settings": {
         "import/resolver": {
@@ -24,6 +22,7 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -32,10 +31,19 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "babel"
     ],
     "rules": {
+        "jsx-a11y/no-static-element-interactions": 0,
+        "jsx-a11y/click-events-have-key-events": 0,
+        "babel/new-cap": 1,
+        "babel/camelcase": 1,
+        "babel/semi": 1,
+        "babel/no-unused-expressions": 1,
+        "babel/object-curly-spacing": ["error", "always"],
         "import/prefer-default-export": 0,
+        "react/destructuring-assignment": 0,
         "react/jsx-no-undef": 1,
         "react/jsx-indent": [ "error", 4 ],
         "react/jsx-uses-react": 1,

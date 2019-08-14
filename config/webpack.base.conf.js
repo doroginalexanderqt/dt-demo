@@ -46,14 +46,14 @@ const config = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules)/,
-                loader: "babel-loader",
+                loader: 'babel-loader',
                 query: {
-                    presets: ["@babel/env", "@babel/preset-react"],
+                    presets: ['@babel/env', '@babel/preset-react'],
                     plugins: [
-                        "@babel/plugin-proposal-class-properties",
-                        "@babel/plugin-syntax-dynamic-import",
-                        "@babel/plugin-proposal-object-rest-spread",
-                        ["@babel/plugin-proposal-decorators", { legacy: true }]
+                        '@babel/plugin-proposal-class-properties',
+                        '@babel/plugin-syntax-dynamic-import',
+                        '@babel/plugin-proposal-object-rest-spread',
+                        ['@babel/plugin-proposal-decorators', { legacy: true }]
                     ]
                 }
             },

@@ -5,6 +5,6 @@ import store from './store';
 import Skeleton from './components/Skeleton';
 
 ReactDOM.render(
-    <div> asd </div>,
+    <Skeleton> asd </Skeleton>,
     document.getElementById('root')
 );

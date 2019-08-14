@@ -1,17 +1,84 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { messageActions } from '../actions';
+import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import { map } from 'lodash';
+import axios from 'axios';
 
-const mapStateToProps = state => ({ ...state }); // todo: reselect
-const mapDispatchToProps = dispatch => ({
-    messageReceive: bindActionCreators(messageActions.messageReceive, dispatch)
-});
+// import { bindActionCreators } from 'redux';
+// import { connect } from 'react-redux';
+// import { messageActions } from '../actions';
+
+// const mapStateToProps = state => ({ ...state }); // todo: reselect
+// const mapDispatchToProps = dispatch => ({
+//     messageReceive: bindActionCreators(messageActions.messageReceive, dispatch)
+// });
 
 class Skeleton extends PureComponent {
-    messageReceive = () => this.props.messageReceive(); // eslint-disable-line
+    constructor(props){
+        super(props);
+        this.state = {
+            items: [],
+            isLoading: false
+        };
+    }
+
+    componentDidMount() {
+        this.getItems();
+    }
+    getItems = () => this.setState(
+        { isLoading: true },
+        () => axios.get('http://34.98.87.87/goods')
+            .then(({ data }) => this.setState({ items: data.goods }))
+            // .catch(e => alert(e))
+            .finally(
+                () => this.setState({ isLoading: false })
+            )
+    );
+    addItems = () => this.setState(
+        { isLoading: true },
+        () => axios.put('http://34.98.87.87/goods/create/1')
+            .then(this.getItems)
+            .catch(e => alert(e))
+            .finally(() => this.setState({ isLoading: false }))
+    );
     render() {
-        return <div onClick={this.messageReceive}> Container </div>;
+        const { isLoading, items = [] } = this.state;
+        return (
+            <Container>
+                { isLoading && <div>Is loading...</div> }
+                <Row style={{ margin: '20px 0' }}>
+                    <Button onClick={this.addItems}>Add one item</Button>
+                </Row>
+                <Row style={{ height: '800px', overflow: 'auto' }}>
+                    <Table striped bordered hover size="sms">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>name</th>
+                                <th>price</th>
+                                <th>created at</th>
+                                <th>updated at</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                map(items, item => (
+                                    <tr key={item.id}>
+                                        <td>{item.id}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.price}</td>
+                                        <td>{JSON.stringify(item.created_at)}</td>
+                                        <td>{JSON.stringify(item.updated_at)}</td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </Table>
+                </Row>
+            </Container>
+        );
     }
 }
 

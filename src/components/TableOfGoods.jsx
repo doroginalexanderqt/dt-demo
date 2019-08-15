@@ -75,5 +75,3 @@ class TableOfGoods extends PureComponent {
 }
 
 export default TableOfGoods;
-
-// export default connect(mapStateToProps, mapDispatchToProps)(TableOfGoods);

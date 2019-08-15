@@ -35,7 +35,7 @@ class Skeleton extends PureComponent {
         { isLoading: true },
         () => axios.get('http://34.98.87.87/goods')
             .then(({ data }) => this.setState({ items: data.goods }))
-            // .catch(e => alert(e))
+            .catch(e => alert(e))
             .finally(
                 () => this.setState({ isLoading: false })
             )

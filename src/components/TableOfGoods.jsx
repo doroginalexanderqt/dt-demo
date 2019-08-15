@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Table, Button, Container, Row, Alert } from 'react-bootstrap';
+import { Table, Button, Container, Row, Spinner } from 'react-bootstrap';
 import { map } from 'lodash';
 import axios from 'axios';
 import { formatters } from '../helpers';
@@ -37,10 +37,13 @@ class TableOfGoods extends PureComponent {
         return (
             <Container>
                 <Row style={{ margin: '20px 0' }}>
-                    <Button onClick={this.addItems}>Add one item</Button>
+                    <Button onClick={this.addItems} disabled={isLoading}>
+                        { isLoading && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> }
+                        Add one item
+                    </Button>
                 </Row>
                 { isLoading
-                    ? <Alert variant="info">Is loading...</Alert>
+                    ? <Spinner animation="border" variant="primary" />
                     : (
                         <Row style={{ height: '800px', overflow: 'auto' }}>
                             <Table striped bordered hover size="sms">

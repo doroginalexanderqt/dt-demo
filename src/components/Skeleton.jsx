@@ -17,7 +17,7 @@ import moment from 'moment';
 // });
 
 const formatTime = ({ date, timezone, timezone_type }) =>
-    `${moment(date).format('MMMM Do YYYY, H:mm:ss')} (${timezone} ${timezone_type})`;
+    `${moment(date).format('MMMM Do YYYY, H:mm:ss')} (${timezone}${timezone_type > 0 ? `+${timezone_type}`: `-${timezone_type}`})`; // eslint-disable-line
 
 class Skeleton extends PureComponent {
     constructor(props){

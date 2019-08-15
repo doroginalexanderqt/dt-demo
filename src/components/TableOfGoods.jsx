@@ -7,8 +7,7 @@ import { formatters } from '../helpers';
 
 const GOODS_URL = 'http://34.98.87.87/goods';
 
-const tableStyles = { height: '800px', overflow: 'auto' };
-const buttonStyles = { margin: '20px 0' };
+const buttonRowStyles = { margin: '20px 0' };
 
 class TableOfGoods extends PureComponent {
     constructor(props){
@@ -44,7 +43,7 @@ class TableOfGoods extends PureComponent {
         const { isLoading, items } = this.state;
         return (
             <Container>
-                <Row style={buttonStyles}>
+                <Row style={buttonRowStyles}>
                     <Button onClick={this.addItems} disabled={isLoading}>
                         { isLoading && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> }
                         Add one item
@@ -53,7 +52,7 @@ class TableOfGoods extends PureComponent {
                 { isLoading
                     ? <Spinner animation="border" variant="primary" />
                     : (
-                        <Table striped bordered hover size="sms" style={tableStyles}>
+                        <Table striped bordered hover size="sms">
                             <thead>
                                 <tr>
                                     <th>id</th>

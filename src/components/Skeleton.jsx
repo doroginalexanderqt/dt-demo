@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { map } from 'lodash';
 import axios from 'axios';
+import moment from 'moment';
 
 // import { bindActionCreators } from 'redux';
 // import { connect } from 'react-redux';
@@ -14,6 +15,9 @@ import axios from 'axios';
 // const mapDispatchToProps = dispatch => ({
 //     messageReceive: bindActionCreators(messageActions.messageReceive, dispatch)
 // });
+
+const formatTime = ({ date, timezone, timezone_type }) =>
+    `${moment(date).format('MMMM Do YYYY, H:mm:ss')} (${timezone} ${timezone_type})`;
 
 class Skeleton extends PureComponent {
     constructor(props){
@@ -69,8 +73,8 @@ class Skeleton extends PureComponent {
                                         <td>{item.id}</td>
                                         <td>{item.name}</td>
                                         <td>{item.price}</td>
-                                        <td>{JSON.stringify(item.created_at)}</td>
-                                        <td>{JSON.stringify(item.updated_at)}</td>
+                                        <td>{formatTime(item.created_at)}</td>
+                                        <td>{formatTime(item.updated_at)}</td>
                                     </tr>
                                 ))
                             }

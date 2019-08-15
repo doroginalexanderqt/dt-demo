@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "es6": true,
-        "commonjs": true
+        "commonjs": true,
+            "jest": true
     },
     "extends": [
         "airbnb",
@@ -67,7 +68,6 @@
         "space-unary-ops": "error",
         "spaced-comment": "error",
         "prefer-object-spread": "error",
-        "max-len": [ "error", 120],
         "comma-spacing": "error",
         "array-bracket-spacing": "error",
         "no-multi-str": "error",

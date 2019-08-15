@@ -4,6 +4,8 @@ import { map } from 'lodash';
 import axios from 'axios';
 import { formatters } from '../helpers';
 
+const GOODS_URL = 'http://34.98.87.87/goods';
+
 class TableOfGoods extends PureComponent {
     constructor(props){
         super(props);
@@ -18,22 +20,24 @@ class TableOfGoods extends PureComponent {
     }
     getItems = () => this.setState(
         { isLoading: true },
-        () => axios.get('http://34.98.87.87/goods')
+        () => axios.get(GOODS_URL)
             .then(({ data }) => this.setState({ items: data.goods }))
-            .catch(e => alert(e))
+            .catch(this.handleError)
             .finally(
                 () => this.setState({ isLoading: false })
             )
     );
     addItems = () => this.setState(
         { isLoading: true },
-        () => axios.put('http://34.98.87.87/goods/create/1')
+        () => axios.put(`${GOODS_URL}/create/1`)
             .then(this.getItems)
-            .catch(e => alert(e))
+            .catch(this.handleError)
             .finally(() => this.setState({ isLoading: false }))
     );
+    handleError = e => alert(e);
+
     render() {
-        const { isLoading, items = [] } = this.state;
+        const { isLoading, items } = this.state;
         return (
             <Container>
                 <Row style={{ margin: '20px 0' }}>

@@ -33,3 +33,6 @@ Fixes all code style errors in `.js, .jsx` files.
 
 `npm run test`
 Runs unit-tests. (all files with `*.spec.js|*.test.js` postfix will be matched)
+
+### `npm run test:dev`
+Runs unit-tests in dev mode, so any changes will trigger job to rerun tests.

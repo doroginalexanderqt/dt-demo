@@ -5,6 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const uglify = require('uglify-js');
 
+const babelConfig = require(path.resolve(__dirname, '../babel.config')); // eslint-disable-line import/no-dynamic-require
+
 const PATHS = {
     src: path.resolve(__dirname, '../src'),
     build: path.resolve(__dirname, '../build'),
@@ -47,15 +49,7 @@ const config = {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules)/,
                 loader: 'babel-loader',
-                query: {
-                    presets: ['@babel/env', '@babel/preset-react'],
-                    plugins: [
-                        '@babel/plugin-proposal-class-properties',
-                        '@babel/plugin-syntax-dynamic-import',
-                        '@babel/plugin-proposal-object-rest-spread',
-                        ['@babel/plugin-proposal-decorators', { legacy: true }]
-                    ]
-                }
+                query: babelConfig
             },
         ]
     },

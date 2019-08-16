@@ -1,10 +1,14 @@
 import React, { PureComponent } from 'react';
 import { Table, Button, Container, Row, Spinner } from 'react-bootstrap';
+
 import { map } from 'lodash';
 import axios from 'axios';
 import { formatters } from '../helpers';
 
 const GOODS_URL = 'http://34.98.87.87/goods';
+
+const buttonRowStyles = { margin: '20px 0' };
+const tableContainerStyles = { height: 800, overflow: 'auto' };
 
 class TableOfGoods extends PureComponent {
     constructor(props){
@@ -40,16 +44,16 @@ class TableOfGoods extends PureComponent {
         const { isLoading, items } = this.state;
         return (
             <Container>
-                <Row style={{ margin: '20px 0' }}>
+                <Row style={buttonRowStyles}>
                     <Button onClick={this.addItems} disabled={isLoading}>
                         { isLoading && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> }
                         Add one item
                     </Button>
                 </Row>
-                { isLoading
-                    ? <Spinner animation="border" variant="primary" />
-                    : (
-                        <Row style={{ height: '800px', overflow: 'auto' }}>
+                <div style={tableContainerStyles}>
+                    { isLoading
+                        ? <Spinner animation="border" variant="primary" />
+                        : (
                             <Table striped bordered hover size="sms">
                                 <thead>
                                     <tr>
@@ -74,8 +78,8 @@ class TableOfGoods extends PureComponent {
                                     }
                                 </tbody>
                             </Table>
-                        </Row>
-                    )}
+                        )}
+                </div>
             </Container>
         );
     }

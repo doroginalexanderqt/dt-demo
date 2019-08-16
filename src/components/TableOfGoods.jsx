@@ -8,6 +8,7 @@ import { formatters } from '../helpers';
 const GOODS_URL = 'http://34.98.87.87/goods';
 
 const buttonRowStyles = { margin: '20px 0' };
+const tableContainerStyles = { height: 800, overflow: 'auto' };
 
 class TableOfGoods extends PureComponent {
     constructor(props){
@@ -49,34 +50,36 @@ class TableOfGoods extends PureComponent {
                         Add one item
                     </Button>
                 </Row>
-                { isLoading
-                    ? <Spinner animation="border" variant="primary" />
-                    : (
-                        <Table striped bordered hover size="sms">
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>name</th>
-                                    <th>price</th>
-                                    <th>created at</th>
-                                    <th>updated at</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    map(items, item => (
-                                        <tr key={item.id}>
-                                            <td>{item.id}</td>
-                                            <td>{item.name}</td>
-                                            <td>{item.price}</td>
-                                            <td>{formatters.formatTime(item.created_at)}</td>
-                                            <td>{formatters.formatTime(item.updated_at)}</td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </Table>
-                    )}
+                <div style={tableContainerStyles}>
+                    { isLoading
+                        ? <Spinner animation="border" variant="primary" />
+                        : (
+                            <Table striped bordered hover size="sms">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>name</th>
+                                        <th>price</th>
+                                        <th>created at</th>
+                                        <th>updated at</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        map(items, item => (
+                                            <tr key={item.id}>
+                                                <td>{item.id}</td>
+                                                <td>{item.name}</td>
+                                                <td>{item.price}</td>
+                                                <td>{formatters.formatTime(item.created_at)}</td>
+                                                <td>{formatters.formatTime(item.updated_at)}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </Table>
+                        )}
+                </div>
             </Container>
         );
     }

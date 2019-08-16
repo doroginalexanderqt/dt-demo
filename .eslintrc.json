@@ -36,6 +36,7 @@
         "babel"
     ],
     "rules": {
+        "array-bracket-newline": ["error", "consistent"],
         "babel/new-cap": 1,
         "babel/camelcase": 1,
         "babel/semi": 1,

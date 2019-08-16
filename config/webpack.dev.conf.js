@@ -6,7 +6,8 @@ const baseWebpackConfig = require('./webpack.base.conf');
 const devWebpackConfig = merge(baseWebpackConfig, {
     mode: 'development',
     devServer: {
-        port: 9000,
+        port: 9111,
+        host: '0.0.0.0',
         open: true,
         contentBase: baseWebpackConfig.externals.paths.build,
         overlay: true,

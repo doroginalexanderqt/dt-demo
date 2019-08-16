@@ -1,3 +1,5 @@
+## npm-scripts
+
 ### `npm run dev`
 Runs the app in the development mode. (Live reload enabled) <br />
 Available on [http://localhost:9000](http://localhost:9000).
@@ -13,3 +15,6 @@ Fixes all code style errors in `.js, .jsx` files.
 
 ### `npm run test`
 Runs unit-tests. (all files with `*.spec.js|*.test.js` postfix will be matched)
+
+### `npm run test:dev`
+Runs unit-tests in dev mode, so any changes will trigger job to rerun tests.

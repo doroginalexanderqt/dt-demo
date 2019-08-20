@@ -5,7 +5,7 @@ import { map } from 'lodash';
 import axios from 'axios';
 import { formatters } from '../helpers';
 
-const GOODS_URL = 'http://34.98.87.87/goods';
+const GOODS_URL = 'http://aff799b6dc01711e9bbbf0a74a39d85c-202741401.eu-west-2.elb.amazonaws.com/goods';
 
 const buttonRowStyles = { margin: '20px 0' };
 const tableContainerStyles = { height: 800, overflow: 'auto' };
@@ -14,38 +14,44 @@ class TableOfGoods extends PureComponent {
     constructor(props){
         super(props);
         this.state = {
-            items: [],
+            goods: [],
             isLoading: false
         };
     }
 
     componentDidMount() {
-        this.getItems();
+        this.getGoods();
     }
-    getItems = () => this.setState(
+    getGoods = () => this.setState(
         { isLoading: true },
         () => axios.get(GOODS_URL)
-            .then(({ data }) => this.setState({ items: data.goods }))
+            .then(this.handleFetchGoodsSucceed)
             .catch(this.handleError)
             .finally(
                 () => this.setState({ isLoading: false })
             )
     );
-    addItems = () => this.setState(
+    handleFetchGoodsSucceed = ({ data }) => this.setState({ goods: data.goods });
+
+    createGoods = () => this.setState(
         { isLoading: true },
         () => axios.put(`${GOODS_URL}/create/1`)
-            .then(this.getItems)
+            .then(this.handleCreateGoodsSucceed)
             .catch(this.handleError)
             .finally(() => this.setState({ isLoading: false }))
     );
+    handleCreateGoodsSucceed = ({ data }) => this.setState({
+        goods: this.state.goods.concat(data.goods)
+    });
+
     handleError = e => alert(e);
 
     render() {
-        const { isLoading, items } = this.state;
+        const { isLoading, goods } = this.state;
         return (
             <Container>
                 <Row style={buttonRowStyles}>
-                    <Button onClick={this.addItems} disabled={isLoading}>
+                    <Button onClick={this.createGoods} disabled={isLoading}>
                         { isLoading && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> }
                         Add one item
                     </Button>
@@ -66,7 +72,7 @@ class TableOfGoods extends PureComponent {
                                 </thead>
                                 <tbody>
                                     {
-                                        map(items, item => (
+                                        map(goods, item => (
                                             <tr key={item.id}>
                                                 <td>{item.id}</td>
                                                 <td>{item.name}</td>

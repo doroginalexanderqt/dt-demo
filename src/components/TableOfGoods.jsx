@@ -57,34 +57,30 @@ class TableOfGoods extends PureComponent {
                     </Button>
                 </Row>
                 <div style={tableContainerStyles}>
-                    { isLoading
-                        ? <Spinner animation="border" variant="primary" />
-                        : (
-                            <Table striped bordered hover size="sms">
-                                <thead>
-                                    <tr>
-                                        <th>id</th>
-                                        <th>name</th>
-                                        <th>price</th>
-                                        <th>created at</th>
-                                        <th>updated at</th>
+                    <Table striped bordered hover size="sm">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>name</th>
+                                <th>price</th>
+                                <th>created at</th>
+                                <th>updated at</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                map(goods, item => (
+                                    <tr key={item.id}>
+                                        <td>{item.id}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.price}</td>
+                                        <td>{formatters.formatTime(item.created_at)}</td>
+                                        <td>{formatters.formatTime(item.updated_at)}</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        map(goods, item => (
-                                            <tr key={item.id}>
-                                                <td>{item.id}</td>
-                                                <td>{item.name}</td>
-                                                <td>{item.price}</td>
-                                                <td>{formatters.formatTime(item.created_at)}</td>
-                                                <td>{formatters.formatTime(item.updated_at)}</td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </Table>
-                        )}
+                                ))
+                            }
+                        </tbody>
+                    </Table>
                 </div>
             </Container>
         );

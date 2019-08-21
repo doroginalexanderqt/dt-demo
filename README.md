@@ -23,6 +23,26 @@ Run server
 
 Open in the browser http://127.0.0.1:9112/
 
+## Building for k8s cloud
+
+First, build initial image with all the dependant files:
+
+`docker build -t godel-demo .`
+
+Then build actual cloud image:
+
+`docker build -f docker/Dockerfile -t front-nginx .`
+
+And tag it according to the AWS repo:
+
+`docker tag front-nginx:latest 375550435474.dkr.ecr.eu-west-2.amazonaws.com/front-nginx:latest`
+
+Then push it to the cloud:
+
+`docker push 375550435474.dkr.ecr.eu-west-2.amazonaws.com/front-nginx:latest`
+
+Then you'll have the image ready for the front end kubernetes app deployment declaration.
+
 ## Useful commands:
 
 `npm run lint`

@@ -5,7 +5,7 @@ import { map } from 'lodash';
 import axios from 'axios';
 import { formatters } from '../helpers';
 
-const GOODS_URL = 'http://aff799b6dc01711e9bbbf0a74a39d85c-202741401.eu-west-2.elb.amazonaws.com/goods';
+const GOODS_URL = 'http://aa14ce411c3eb11e9bf79064de27a66d-1629590231.eu-west-2.elb.amazonaws.com/goods';
 
 const buttonRowStyles = { margin: '20px 0' };
 const tableContainerStyles = { height: 800, overflow: 'auto' };

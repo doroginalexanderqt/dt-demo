@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-nginx
+  labels:
+    app: front-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front-nginx
+  template:
+    metadata:
+      labels:
+        app: front-nginx
+    spec:
+      containers:
+        - image: 375550435474.dkr.ecr.eu-west-2.amazonaws.com/front-nginx:latest
+          name: "k8s-demo-nginx-front"
+          ports:
+            - containerPort: 80
+              name: nginx

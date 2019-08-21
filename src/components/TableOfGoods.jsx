@@ -9,6 +9,7 @@ const GOODS_URL = 'http://aa14ce411c3eb11e9bf79064de27a66d-1629590231.eu-west-2.
 
 const buttonRowStyles = { margin: '20px 0' };
 const tableContainerStyles = { height: 800, overflow: 'auto' };
+const refreshBtnStyles = { margin: '0 20px' };
 
 class TableOfGoods extends PureComponent {
     constructor(props){
@@ -54,6 +55,10 @@ class TableOfGoods extends PureComponent {
                     <Button onClick={this.createGoods} disabled={isLoading}>
                         { isLoading && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> }
                         Add one item
+                    </Button>
+                    <Button onClick={this.getGoods} disabled={isLoading} style={refreshBtnStyles} variant="success">
+                        { isLoading && <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" /> }
+                        Refresh
                     </Button>
                 </Row>
                 <div style={tableContainerStyles}>
